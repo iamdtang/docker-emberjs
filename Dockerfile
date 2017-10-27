@@ -2,11 +2,15 @@ FROM node:6.11.5-stretch
 LABEL maintainer="John Costanzo"
 
 # Environment variables
-ENV EMBER_VERSION=2.16.0
+ENV EMBER_VERSION=2.16.0 APP_DIR=/app
 
 COPY ./docker/entrypoint.sh /entrypoint.sh
 
-RUN apt-get update -y && \
+RUN useradd -ms /bin/bash ember && \
+  mkdir /app && \
+  chown -R ember /app && \
+  chmod -R 750 /app && \
+  apt-get update -y && \
   apt-get install -y --no-install-recommends \
   python-dev \
   curl \
@@ -31,9 +35,7 @@ RUN apt-get update -y && \
 	rm -rf /tmp/phantomjs && \
   apt-get install -y --no-install-recommends \
   yarn \
-  google-chrome-stable \
-	--no-install-recommends && \
-  sed -i 's/"$@"/--no-sandbox "$@"/g' /opt/google/chrome/google-chrome && \
+  google-chrome-stable && \
   yarn global add ember-cli@$EMBER_VERSION && \
   chmod +x /entrypoint.sh && \
   apt-get remove -y \
@@ -42,7 +44,7 @@ RUN apt-get update -y && \
   rm -rf /var/lib/apt/lists/*
 
 
-EXPOSE 4200 49153 5779
+EXPOSE 4200 7020 7357
 
 WORKDIR /app
 
