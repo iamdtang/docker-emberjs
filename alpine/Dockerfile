@@ -33,9 +33,10 @@ RUN apk add --no-cache --virtual build-dependencies \
     rm -rf /tmp/phantomjs && \
   yarn global add ember-cli@$EMBER_VERSION && \
   apk del build-dependencies && \
-  rm -Rf /tmp/*
+  rm -Rf /tmp/* ** \
+  rm -rf /var/cache/apk/*
 
-EXPOSE 4200 7020 7357
+EXPOSE 4200 7020 7357 9222
 
 WORKDIR /app
 
