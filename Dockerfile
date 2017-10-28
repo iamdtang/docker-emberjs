@@ -4,7 +4,7 @@ LABEL maintainer="John Costanzo"
 # Environment variables
 ENV EMBER_VERSION=2.16.0 APP_DIR=/app
 
-COPY ./docker/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 RUN useradd -ms /bin/bash ember && \
   mkdir /app && \
