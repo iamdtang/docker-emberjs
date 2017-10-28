@@ -37,11 +37,12 @@ RUN useradd -ms /bin/bash ember && \
   yarn \
   google-chrome-stable && \
   yarn global add ember-cli@$EMBER_VERSION && \
-  chmod +x /entrypoint.sh && \
   apt-get remove -y \
   curl \
   git && \
-  rm -rf /var/lib/apt/lists/*
+  sed -i 's/"$@"/--no-sandbox --disable-setuid-sandbox "$@"/g' /opt/google/chrome/google-chrome && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -Rf /tmp/*
 
 
 EXPOSE 4200 7020 7357
