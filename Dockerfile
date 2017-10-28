@@ -42,8 +42,9 @@ RUN useradd -ms /bin/bash ember && \
   git && \
   sed -i 's/"$@"/--no-sandbox --disable-setuid-sandbox "$@"/g' /opt/google/chrome/google-chrome && \
   rm -rf /var/lib/apt/lists/* && \
-  rm -Rf /tmp/*
-
+  rm -Rf /tmp/* && \
+  rm -Rf /usr/local/share/.cache/* ** \
+  rm -Rf /usr/share/icons/*
 
 EXPOSE 4200 7020 7357
 
