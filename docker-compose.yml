@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  ember:
+    image: jrock2004/docker-emberjs
+    container_name: southcity
+    ports:
+      - 4200:4200
+      - 7020:7020
+      - 7357:7357
+    volumes:
+      - .:/app:delegated
+      - /app/node_modules
+      - /app/tmp
