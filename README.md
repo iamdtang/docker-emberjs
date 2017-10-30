@@ -32,7 +32,7 @@ Here are a few docker commands that help you with using this image
 ### Run the image with existing project
 
 ```
-# docker run -rm -it -v $(pwd):/app -p 4200:4200 -p 7020:7020 -p 7357:7357 -p 9222:9222 jrock2004/emberjs
+# docker run -rm -it -v $(pwd):/app -p 4200:4200 -p 49153:49153 -p 7357:7357 -p 9222:9222 jrock2004/emberjs
 ```
 
 ### Run some tests
