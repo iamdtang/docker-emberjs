@@ -2,7 +2,7 @@ FROM node:6.11.5-alpine
 LABEL maintainer="John Costanzo"
 
 # Environment variables
-ENV EMBER_VERSION=2.16.0 APP_DIR=/app PATH=/root/.yarn/bin:$PATH
+ENV EMBER_VERSION=2.10.0 APP_DIR=/app PATH=/root/.yarn/bin:$PATH
 
 COPY ./entrypoint.sh /entrypoint.sh
 
@@ -36,7 +36,7 @@ RUN apk add --no-cache --virtual build-dependencies \
   rm -Rf /tmp/* ** \
   rm -rf /var/cache/apk/*
 
-EXPOSE 4200 7020 7357 9222
+EXPOSE 4200 49153 7357 9222
 
 WORKDIR /app
 

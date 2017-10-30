@@ -9,6 +9,7 @@ This is used for when you want to develop an ember application and do testing as
 - [latest](https://github.com/jrock2004/docker-emberjs/blob/master/Dockerfile)
 - [2.16.0](https://github.com/jrock2004/docker-emberjs/blob/2.16.0/Dockerfile)
 - [2.12.0](https://github.com/jrock2004/docker-emberjs/blob/2.12.0/Dockerfile)
+- [2.10.0](https://github.com/jrock2004/docker-emberjs/blob/2.10.0/Dockerfile)
 
 
 ## Ports
@@ -16,7 +17,7 @@ This is used for when you want to develop an ember application and do testing as
 The following ports are being exposed from the base image
 
 - 4200: EmberJS port
-- 7020: Live reload port
+- 49153: Live reload port
 - 7357: Testing port
 - 9222: Test dubugging port
 
@@ -32,11 +33,11 @@ Here are a few docker commands that help you with using this image
 ### Run the image with existing project
 
 ```
-# docker run -rm -it -v $(pwd):/app -p 4200:4200 -p 7020:7020 -p 7357:7357 -p 9222:9222 jrock2004/emberjs
+# docker run -rm -it -v $(pwd):/app -p 4200:4200 -p 49153:49153 -p 7357:7357 -p 9222:9222 jrock2004/emberjs
 ```
 
 ### Run some tests
 
 ```
-# docker run -rm -it -v $(pwd):/app -p 4200:4200 -p 7020:7020 -p 7357:7357 -p 9222:9222 jrock2004/emberjs ember test --server
+# docker run -rm -it -v $(pwd):/app -p 4200:4200 -p 49153:49153 -p 7357:7357 -p 9222:9222 jrock2004/emberjs ember test --server
 ```
