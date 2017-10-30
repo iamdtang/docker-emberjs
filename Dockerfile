@@ -46,7 +46,7 @@ RUN useradd -ms /bin/bash ember && \
   rm -Rf /usr/local/share/.cache/* ** \
   rm -Rf /usr/share/icons/*
 
-EXPOSE 4200 7020 7357
+EXPOSE 4200 7020 7357 9222
 
 WORKDIR /app
 
