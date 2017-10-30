@@ -7,7 +7,7 @@ This is used for when you want to develop an ember application and do testing as
 The following ports are being exposed from the base image
 
 - 4200: EmberJS port
-- 7020: Live reload port
+- 49153: Live reload port
 - 7357: Testing port
 - 9222: Test dubugging port
 

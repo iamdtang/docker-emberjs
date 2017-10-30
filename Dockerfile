@@ -2,7 +2,7 @@ FROM node:6.11.5-stretch
 LABEL maintainer="John Costanzo"
 
 # Environment variables
-ENV EMBER_VERSION=2.16.0 APP_DIR=/app
+ENV EMBER_VERSION=2.12.0 APP_DIR=/app
 
 COPY entrypoint.sh /entrypoint.sh
 
@@ -41,12 +41,11 @@ RUN useradd -ms /bin/bash ember && \
   curl \
   git && \
   sed -i 's/"$@"/--no-sandbox --disable-setuid-sandbox "$@"/g' /opt/google/chrome/google-chrome && \
-  rm -rf /var/lib/apt/lists/* && \
   rm -Rf /tmp/* && \
   rm -Rf /usr/local/share/.cache/* ** \
   rm -Rf /usr/share/icons/*
 
-EXPOSE 4200 7020 7357 9222
+EXPOSE 4200 49153 7357 9222
 
 WORKDIR /app
 
