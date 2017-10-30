@@ -1,49 +1,40 @@
-FROM node:6.11.5-stretch
+FROM node:6.11.5-alpine
 LABEL maintainer="John Costanzo"
 
 # Environment variables
-ENV EMBER_VERSION=2.12.0 APP_DIR=/app
+ENV EMBER_VERSION=2.12.0 APP_DIR=/app PATH=/root/.yarn/bin:$PATH
 
-COPY entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 
-RUN useradd -ms /bin/bash ember && \
+RUN apk add --no-cache --virtual build-dependencies \
+    bash \
+    curl \
+    git \
+    gnupg \
+    build-base \
+    automake \
+    autoconf \
+    tar \
+    linux-headers && \
+  touch ~/.bashrc && \
+  /bin/bash && \
   mkdir /app && \
-  chown -R ember /app && \
-  chmod -R 750 /app && \
-  apt-get update -y && \
-  apt-get install -y --no-install-recommends \
-  python-dev \
-  curl \
-  git \
-  apt-transport-https \
-  gnupg && \
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-  curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-	echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-  apt-get update && \
+  curl -o- -L https://yarnpkg.com/install.sh | bash && \
   git clone https://github.com/facebook/watchman.git && \
-	cd watchman && \
-	git checkout v4.7.0 && \
-	./autogen.sh && \
-	./configure && \
-	make && \
-	make install && \
+  cd watchman && \
+    git checkout v4.7.0 && \
+    ./autogen.sh && \
+    ./configure && \
+    make && \
+    make install && \
   mkdir /tmp/phantomjs && \
-	curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | tar -xvj -C /tmp/phantomjs --strip-components=1 phantomjs-2.1.1-linux-x86_64/bin && \
-	mv /tmp/phantomjs/bin/phantomjs /usr/bin && \
-	rm -rf /tmp/phantomjs && \
-  apt-get install -y --no-install-recommends \
-  yarn \
-  google-chrome-stable && \
+    curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | tar -xvj -C /tmp/phantomjs --strip-components=1 phantomjs-2.1.1-linux-x86_64/bin && \
+    mv /tmp/phantomjs/bin/phantomjs /usr/bin && \
+    rm -rf /tmp/phantomjs && \
   yarn global add ember-cli@$EMBER_VERSION && \
-  apt-get remove -y \
-  curl \
-  git && \
-  sed -i 's/"$@"/--no-sandbox --disable-setuid-sandbox "$@"/g' /opt/google/chrome/google-chrome && \
-  rm -Rf /tmp/* && \
-  rm -Rf /usr/local/share/.cache/* ** \
-  rm -Rf /usr/share/icons/*
+  apk del build-dependencies && \
+  rm -Rf /tmp/* ** \
+  rm -rf /var/cache/apk/*
 
 EXPOSE 4200 49153 7357 9222
 
