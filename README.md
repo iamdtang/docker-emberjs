@@ -9,6 +9,7 @@ This is used for when you want to develop an ember application and do testing as
 - [latest](https://github.com/jrock2004/docker-emberjs/blob/master/Dockerfile)
 - [2.16.0](https://github.com/jrock2004/docker-emberjs/blob/2.16.0/Dockerfile)
 - [2.12.0](https://github.com/jrock2004/docker-emberjs/blob/2.12.0/Dockerfile)
+- [2.10.0](https://github.com/jrock2004/docker-emberjs/blob/2.10.0/Dockerfile)
 
 
 ## Ports
