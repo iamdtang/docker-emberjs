@@ -17,6 +17,7 @@ else
 fi
 
 if [ -f bower.json ]; then
+  npm install -g bower
   bower install
 fi
 
