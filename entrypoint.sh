@@ -16,5 +16,9 @@ else
   yarn install
 fi
 
+if [ -f bower.json ]; then
+  bower install
+fi
+
 echo "Starting ember server: "
 ember server
